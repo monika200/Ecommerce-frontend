@@ -1,0 +1,9 @@
+.productContainer{
+    display: flex;
+    justify-content: space-around
+}
+.product{
+    border: 5px dotted black;
+    margin: 10px;
+    padding: 20px;
+}
