@@ -3,9 +3,9 @@ import logo from './logo.jpg';
 import axios from 'axios';
 import './App.css';
 import Products from "./components/Products"
-//const Razorpay = require("razorpay");
+const Razorpay = require("razorpay");
 
-const baseUrl = "http://localhost:8005";
+const baseUrl = "https://ecommerce-online-education.herokuapp.com";
 
 
 
@@ -57,7 +57,7 @@ const [signature, setSignature] = useState('')
         //     "color": "#3399cc"
         // }
     };
-    const rzp1 = new Window.Razorpay(options);
+    const rzp1 = new Razorpay(options);
     rzp1.open();
     rzp1.on('payment.failed', function (response){
             alert(response.error.code);
