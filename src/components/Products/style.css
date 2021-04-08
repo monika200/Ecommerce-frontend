@@ -4,6 +4,8 @@
 }
 .product{
     border: 5px dotted black;
+    border-radius: 40px;
     margin: 10px;
     padding: 20px;
+    background-color: gray;
 }

@@ -21,21 +21,21 @@ const [signature, setSignature] = useState('')
   }, []);
 
 
-  const buyNow  = async (productID)=>{
-    const res = await axios.get(`${baseUrl}/order/${productID}`)
+  const buyNow  = async (productId)=>{
+    const res = await axios.get(`${baseUrl}/order/${productId}`)
     console.log(res);
     
     if (res.status !==200){
       return;
     }
-      var options = {
-        "key": "rzp_test_MdGluNtTWCvuX9", // Enter the Key ID generated from the Dashboard
-        "amount": "res.data.amount", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        "currency": "res.data.currency",
+      const options = {
+        "key_id": "rzp_test_0UrgJJ8O5WVe6e", // Enter the Key ID generated from the Dashboard
+        "amount": res.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": res.data.currency ,
         "name": "webLearn",
-        "description": "res.data.notes.desc",
+        "description": res.data.notes.desc,
         "image": {logo},
-        "order_id": "res.data.id", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "order_id": res.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response){
             // alert(response.razorpay_payment_id);
             // alert(response.razorpay_order_id);
@@ -57,9 +57,9 @@ const [signature, setSignature] = useState('')
         //     "color": "#3399cc"
         // }
     };
-    const rzp1 = new Razorpay(options);
-    rzp1.open();
-    rzp1.on('payment.failed', function (response){
+    const rzp = new Razorpay(options);
+    rzp.open();
+    rzp.on('payment.failed', function (response){
             alert(response.error.code);
             alert(response.error.description);
             alert(response.error.source);
@@ -68,7 +68,7 @@ const [signature, setSignature] = useState('')
             alert(response.error.metadata.order_id);
             alert(response.error.metadata.payment_id);
     });
-      alert(productID)
+      alert(productId)
     };
     
 
@@ -87,14 +87,9 @@ const [signature, setSignature] = useState('')
         <p>
           Welcome to Online training center
         </p>
-        <a
-          className="App-link"
-          href="https://webLearn.info"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          WebLearn.info
-        </a>
+     <h5>WebLearn.info</h5>
+         
+        
         <div>
           {
              payment && (
@@ -106,8 +101,9 @@ const [signature, setSignature] = useState('')
              )
           }
         </div>
+        <Products products={products} buyNow={buyNow}/>
       </header>
-      <Products products={products} buyNow={buyNow}/>
+     
     </div>
   );
 }

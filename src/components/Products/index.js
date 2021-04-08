@@ -7,7 +7,7 @@ const Products = (props) => {
             <div key={products.id} className="product">
             <h3>{products.Name}</h3>
             <p>{products.Description}</p>
-            <h5>{products.price}</h5>
+            <h5> $ {products.price}</h5>
             <button onClick={() => props.buyNow(products.id)}>Buy Now</button>
             </div>
            ))}
